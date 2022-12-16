@@ -90,8 +90,8 @@ GDP_per_worker_ratio_5th_95th_percentile = float(income_per_worker[0.95]) / floa
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
 
 #Tabulate results 
-
 from tabulate import tabulate
+
 
 table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Income per Unit of Human Capital","Income per Hour of Human Capital"],
 ["United States", float(richest_income_per_worker), float(richest_income_per_hour_worked), float(richest_income_per_unit_of_human_capital), float(richest_income_per_hour_of_human_capital)],
@@ -162,3 +162,27 @@ for (q, r) in zip (q_list, r_list):
     df_subset_ykh_success[q,r] = (df_subset_q2_success[q]/df_subset_q2_success[r])
     success_2[q] = (df_subset_ykh_success[q,r]/ df_subset_y_success[q,r])
     print("for percentiles", q, "and", r, "the ratio is", (success_2[q]))
+  
+#Question 8
+
+df_subset_q2_success_TFP = {}
+success_2_TFP = {}
+df_subset_TFP_success = {}
+
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success[q] = df_subset_2019['gdp_per_worker'].quantile(q)
+    df_subset_q1_success[r] = df_subset_2019['gdp_per_worker'].quantile(r)
+    df_subset_y_success[q,r] = (df_subset_q1_success[q]/df_subset_q1_success[r])
+    df_subset_q2_success_TFP[q] = df_subset_2019['ctfp'].quantile(q)
+    df_subset_q2_success_TFP[r] = df_subset_2019['ctfp'].quantile(r)
+    df_subset_TFP_success[q,r] = (df_subset_q2_success_TFP[q]/df_subset_q2_success_TFP[r])
+    success_2_TFP[q] = (df_subset_TFP_success[q,r]/ df_subset_y_success[q,r])
+    #print("for percentiles", q, "and", r, "the ratio is", (success_2_TFP[q]))
+
+var_log_y_kh = statistics.variance(np.log((df_subset_2019["cgdpo"] / df_subset_2019["emp"]) / df_subset_2019["ctfp"]))
+var_log_TFP = statistics.variance(np.log((df_subset_2019["ctfp"])))
+df_subset_2019['ykh'] = (df_subset_2019["cgdpo"] / (df_subset_2019["emp"])) / df_subset_2019["ctfp"]
+df_subset_2019['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
+
+success1_TFP = var_log_TFP/ var_log_y
+#print ("success 1 TFP is", success1_TFP)
