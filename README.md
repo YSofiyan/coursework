@@ -31,7 +31,7 @@ for year in range (2010, 2020):
 
 ###3
  
-#Gettinmg the country with highest and lowest GDP at current PPP
+#Getting the country with highest and lowest GDP at current PPP
 
 df_subset_2019 = df_subset[(df_subset['year'] == 2019)].dropna()
 print (df_subset_2019)
