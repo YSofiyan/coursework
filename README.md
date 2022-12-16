@@ -547,6 +547,9 @@ for (q, r) in zip (q_list, r_list):
 #There is only one data point here for Africa so cannot workout the variance required for success 1
 #This will also mean that success 2 is just 1
 
+df_African['ykh'] = (df_African["cgdpo"] / (df_African["emp"])) / df_African["ctfp"]
+df_African['y'] = df_African["cgdpo"] / df_African['emp']
+
 df_subset_q1_success_African = {}
 df_subset_q2_success_African = {}
 success_2_African = {}
