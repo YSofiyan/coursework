@@ -12,10 +12,13 @@ df = pd.read_csv(fp,encoding='latin-1')
 ###2
 
 #Creating a subset for variables in interest
+
 df_subset = df[['cgdpo', 'emp', 'avh', 'hc', 'countrycode', 'year', 'country', 'cn', 'pop', 'ctfp','labsh']].dropna()
 print(df_subset.dropna().describe())
 df_subset.to_csv("pwt_subset.csv", index = "country")
+
 #Choosing a year that maximises the number of observations for variables of interest
+
 for year in range (2010, 2020):
   x = df_subset[df_subset["year"] == year].describe()
   print(x.dropna())
@@ -29,13 +32,15 @@ for year in range (2010, 2020):
 
 #Question 3:
  
-#Getting the country with highest and lowest GDP at current PPP
+#Getting the countries with highest and lowest GDP at current PPP
 
 df_subset_2019 = df_subset[(df_subset['year'] == 2019)].dropna()
 print (df_subset_2019)
 
 df_rich_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].max()]
 df_poor_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].min()]
+
+# Creating a code for comparing outputs between the richest and the poorest
 
 richest_income_per_worker = float(df_rich_country["cgdpo"] / df_rich_country["emp"])
 print ("for the richest country, income per worker is", richest_income_per_worker)
@@ -54,7 +59,7 @@ print ("for the richest country, income per hour of human capital is", richest_i
 poorest_income_per_hour_of_human_capital = float (df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc'] * df_poor_country['avh']))
 print ("for the poorest country, income per hour of human capital is", poorest_income_per_hour_of_human_capital)
 
-#Countries in different percentiles: 
+#Measuring the output of countries in different percentiles: 
 
 df_subset_q = {}
 income_per_worker = {}
@@ -99,16 +104,17 @@ table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Incom
 ["Malta", float(poorest_income_per_worker), float(poorest_income_per_hour_worked), float(poorest_income_per_unit_of_human_capital), float(poorest_income_per_hour_of_human_capital)]]
 print(tabulate(table1_data, headers='firstrow', tablefmt='fancy_grid'))
 
+#Providing a discriptive table for the results
+
 table2_data = [["Percentiles", "Countries" , "GDP ratio", "GDP per worker ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest,GDP_per_worker_ratio_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile,GDP_per_worker_ratio_5th_95th_percentile ], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile,GDP_per_worker_ratio_10th_90th_percentile]]
 print(tabulate(table2_data, headers='firstrow', tablefmt='grid'))
-
-#Question 4:
-#Standard of living for each country can be denoted by the income per worker. The differences in human capital and hours worked can be a useful way to explain differences in standard of living. Having greater access to human capital suggests that a country has better education resources, improving the economies innovation and social well-being, helping the economy grow, improving standard of living as income per worker will rise as the economy grows. As well as this, having a greater income per hour worked will also increase the standard of living because it means that the workers will get more benefit from their time spent working, increasing the income per capita. This is supported by the results in our table 1 and table 2. As we have seen in table 1, for the richest and poorest countries, the US has greater income per Hour Worked, income per Unit of Human Capital, compared to Malta resulting in a standard of living that is 1.65 times bigger as the magnitude of the differences in income per worker is 1.65. This helps contribute to the fact that the GDP ratio between the USA and Malta is 1186.69. For the countries in the 95th and 5th percentile, the country in the 95th percentile, Japan, has greater income per Hour Worked, income per Unit of Human Capital, compared to the country in the 5th percentile, Estonia, resulting in a standard of living that is 1.07 times bigger as the magnitude of the differences in income per worker is 1.07, this small due to the fact that these countries are similar in terms of these measures. However, the GDP ratio of Japan to Estonia is 111.62, this is because Japan’s population is significantly bigger, hence reflecting their superior GDP, whilst having a similar standard of living. For the countries in the 90th and 10th percentile, the country in the 90th percentile, Indonesia, has lower income per Hour Worked, income per Unit of Human Capital, compared to the country in the 10th percentile, Uruguay, resulting in a standard of living that is 0.55 times smaller as the magnitude of the differences in income per worker is 0.55. Despite having a significant GDP, Indonesia’s standard of living is proved to be extremely poor due to their weak income per hour worked and poor human capital. The GDP ratio between Indonesia and Uruguay is 43.7577, Indonesia has a greater GDP due to their much larger population, making up for their lack of income per capita. A better indicator of standard of living may be to use the HDI index because it considers other factors that will affect the standard of living in a country.
 
 #Question 5:
 
 import matplotlib.pyplot as plt
 import statistics
+
+#Producing Scatter plots for output and selected dataset variables for 2019
 
 df_subset_2019['log_gdp'] = np.log((df_subset_2019["cgdpo"]))
 df_subset_2019['gdp_per_worker'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
@@ -133,6 +139,8 @@ plt.close()
 #Question 6:
 
 import statistics
+
+#Computing the equations for measures of success1 and success2
 
 var_log_y_kh = statistics.variance(np.log((df_subset_2019["cgdpo"] / df_subset_2019["emp"]) / df_subset_2019["ctfp"]))
 var_log_y = statistics.variance(np.log((df_subset_2019["cgdpo"]) / df_subset_2019['emp']))
@@ -164,6 +172,8 @@ for (q, r) in zip (q_list, r_list):
   
 #Question 8:
 
+#Replacing ykh with TFP and re-doing questions 5 and 6
+
 df_subset_q2_success_TFP = {}
 success_2_TFP = {}
 df_subset_TFP_success = {}
@@ -190,7 +200,7 @@ print ("success 1 TFP is", success1_TFP)
     
 #Question 9
 
-#Graphs
+#Reproducing results for median, OECD countries and countries sorted by continent
 
 df_above_median = (df_subset_2019.loc[df_subset['cgdpo'] > df_subset_2019.quantile((0.5), interpolation='nearest')['cgdpo']]).copy()
 df_below_median = (df_subset_2019.loc[df_subset['cgdpo'] < df_subset_2019.quantile((0.5), interpolation='nearest')['cgdpo']]).copy()
@@ -207,6 +217,8 @@ df_European = df_subset_2019[df_subset_2019["country"].isin(European_countries)]
 df_Asian_Oceanic = df_subset_2019[df_subset_2019["country"].isin(Asian_and_oceanic_countries)].copy()
 df_African = df_subset_2019[df_subset_2019["country"].isin(African_countries)].copy()
 df_Americas = df_subset_2019[df_subset_2019["country"].isin(Americas_countries)].copy()
+
+#Plotting a scatter graph results 
 
 x_variables_above_median = list(['log_gdp_per_capita', 'log_gdp_per_worker', 'log_gdp_per_hour_worked', 'log_gdp_per_hour_human_capital'])
 y_variables_above_median = list(['cn', 'hc', 'avh', 'ctfp', 'share_of_labour_compensation_in_GDP'])
