@@ -25,8 +25,6 @@ for year in range (2010, 2020):
 max_observ = df["country"].value_counts()
 
 df_subset_2019 = df_subset[(df_subset['year'] == 2019)].dropna()
-df_subset_2019_2 = df_subset_2019[['cgdpo', 'emp', 'avh', 'hc', 'countrycode', 'year', 'country', 'cn', 'pop', 'ctfp', 'labsh']].dropna()
-
 
 ###3
  
@@ -85,39 +83,39 @@ print ("The GDP per worker ratio between the countries in the 90th and 10th perc
 GDP_per_worker_ratio_5th_95th_percentile = income_per_worker[0.95] / income_per_worker[0.05]
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
 
-###5
+#Question 5
 
 import matplotlib.pyplot as plt
 import statistics
 
-df_subset_2019_2['log_gdp'] = np.log((df_subset_2019_2["cgdpo"]))
-df_subset_2019_2['gdp_per_worker'] = df_subset_2019_2["cgdpo"] / df_subset_2019_2['emp']
-df_subset_2019_2['log_gdp_per_capita'] = np.log(df_subset_2019_2["cgdpo"] / df_subset_2019_2['pop'])
-df_subset_2019_2['log_gdp_per_worker'] = np.log(df_subset_2019_2["cgdpo"] / df_subset_2019_2['emp'])
-df_subset_2019_2['log_gdp_per_hour_worked'] = np.log(df_subset_2019_2["cgdpo"] / (df_subset_2019_2['avh'] / df_subset_2019['emp']))
-df_subset_2019_2['log_gdp_per_hour_human_capital'] = np.log(df_subset_2019_2["cgdpo"] / (df_subset_2019_2['hc'] / df_subset_2019['emp']))
-df_subset_2019_2['share_of_labour_compensation_in_GDP'] = ((-1 * df_subset_2019_2['labsh']) + 1)
+df_subset_2019['log_gdp'] = np.log((df_subset_2019["cgdpo"]))
+df_subset_2019['gdp_per_worker'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
+df_subset_2019['log_gdp_per_capita'] = np.log(df_subset_2019["cgdpo"] / df_subset_2019['pop'])
+df_subset_2019['log_gdp_per_worker'] = np.log(df_subset_2019["cgdpo"] / df_subset_2019['emp'])
+df_subset_2019['log_gdp_per_hour_worked'] = np.log(df_subset_2019["cgdpo"] / (df_subset_2019['avh'] / df_subset_2019['emp']))
+df_subset_2019['log_gdp_per_hour_human_capital'] = np.log(df_subset_2019["cgdpo"] / (df_subset_2019['hc'] / df_subset_2019['emp']))
+df_subset_2019['share_of_labour_compensation_in_GDP'] = ((-1 * df_subset_2019['labsh']) + 1)
 x_variables = list(['log_gdp_per_capita', 'log_gdp_per_worker', 'log_gdp_per_hour_worked', 'log_gdp_per_hour_human_capital'])
 y_variables = list(['cn', 'hc', 'avh', 'ctfp', 'share_of_labour_compensation_in_GDP'])
 
 import itertools
 
 for x_variables, y_variables in itertools.product(x_variables, y_variables):
-    ax = df_subset_2019_2.plot (x= x_variables, y = y_variables, kind='scatter')
+    ax = df_subset_2019.plot (x= x_variables, y = y_variables, kind='scatter')
     plt.xlabel(x_variables, fontsize=12 )
     plt.ylabel(y_variables, fontsize=12)
-    df_subset_2019_2[[x_variables, y_variables, "countrycode"]].apply(lambda x: ax.text(*x), axis=1)   
+    df_subset_2019[[x_variables, y_variables, "countrycode"]].apply(lambda x: ax.text(*x), axis=1)   
 plt.show()
 plt.close()
 
-###6
+#Question 6
 
 import statistics
 
 var_log_y_kh = statistics.variance(np.log((df_subset_2019["cgdpo"] / df_subset_2019["emp"]) / df_subset_2019["ctfp"]))
 var_log_y = statistics.variance(np.log((df_subset_2019["cgdpo"]) / df_subset_2019['emp']))
-df_subset_2019_2['ykh'] = (df_subset_2019["cgdpo"] / (df_subset_2019["emp"])) / df_subset_2019["ctfp"]
-df_subset_2019_2['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
+df_subset_2019['ykh'] = (df_subset_2019["cgdpo"] / (df_subset_2019["emp"])) / df_subset_2019["ctfp"]
+df_subset_2019['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
 
 success1 = var_log_y_kh / var_log_y
 print ("success 1 is", success1)
@@ -131,12 +129,11 @@ df_subset_ykh_success = {}
 q_list = [0.99, 0.95, 0.9, 0.75]
 r_list = [0.01, 0.05, 0.1, 0.25]
 for (q, r) in zip (q_list, r_list):
-    df_subset_q1_success[q] = df_subset_2019_2['gdp_per_worker'].quantile(q)
-    df_subset_q1_success[r] = df_subset_2019_2['gdp_per_worker'].quantile(r)
+    df_subset_q1_success[q] = df_subset_2019['gdp_per_worker'].quantile(q)
+    df_subset_q1_success[r] = df_subset_2019['gdp_per_worker'].quantile(r)
     df_subset_y_success[q,r] = (df_subset_q1_success[q]/df_subset_q1_success[r])
-    df_subset_q2_success[q] = df_subset_2019_2['ykh'].quantile(q)
-    df_subset_q2_success[r] = df_subset_2019_2['ykh'].quantile(r)
+    df_subset_q2_success[q] = df_subset_2019['ykh'].quantile(q)
+    df_subset_q2_success[r] = df_subset_2019['ykh'].quantile(r)
     df_subset_ykh_success[q,r] = (df_subset_q2_success[q]/df_subset_q2_success[r])
     success_2[q] = (df_subset_ykh_success[q,r]/ df_subset_y_success[q,r])
-    #print("for FIRST percentiles", q, "and", r, "the ratio is", (success_2[q]))
-    
+    print("for percentiles", q, "and", r, "the ratio is", (success_2[q]))
