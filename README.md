@@ -38,21 +38,21 @@ df_rich_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo
 df_poor_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].min()]
 
 richest_income_per_worker = float(df_rich_country["cgdpo"] / df_rich_country["emp"])
-#print ("for the richest country, income per worker is", richest_income_per_worker)
+print ("for the richest country, income per worker is", richest_income_per_worker)
 poorest_income_per_worker = float(df_poor_country["cgdpo"] / df_poor_country["emp"])
-#print ("for the poorest country, income per worker is", poorest_income_per_worker)
+print ("for the poorest country, income per worker is", poorest_income_per_worker)
 richest_income_per_hour_worked = float(df_rich_country["cgdpo"] / (df_rich_country["emp"] * df_rich_country["avh"]))
-#print ("for the richest country, income per hour worked is", richest_income_per_hour_worked)
+print ("for the richest country, income per hour worked is", richest_income_per_hour_worked)
 poorest_income_per_hour_worked = float(df_poor_country["cgdpo"] / (df_poor_country["emp"] * df_poor_country["avh"]))
-#print ("for the poorest country, income per hour worked is", poorest_income_per_hour_worked)
+print ("for the poorest country, income per hour worked is", poorest_income_per_hour_worked)
 richest_income_per_unit_of_human_capital = float(df_rich_country['cgdpo']/ (df_rich_country['emp'] * df_rich_country['hc']))
-#print ("for the richest country, income per unit of human capital  is", richest_income_per_unit_of_human_capital)
+print ("for the richest country, income per unit of human capital  is", richest_income_per_unit_of_human_capital)
 poorest_income_per_unit_of_human_capital = float(df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc']))
-#print ("for the poorest country, income per worker is", poorest_income_per_unit_of_human_capital)
+print ("for the poorest country, income per worker is", poorest_income_per_unit_of_human_capital)
 richest_income_per_hour_of_human_capital = float(df_rich_country['cgdpo']/ (df_rich_country['emp'] * df_rich_country['hc'] * df_rich_country['avh']))
-#print ("for the richest country, income per hour of human capital is", richest_income_per_hour_of_human_capital)
+print ("for the richest country, income per hour of human capital is", richest_income_per_hour_of_human_capital)
 poorest_income_per_hour_of_human_capital = float (df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc'] * df_poor_country['avh']))
-#print ("for the poorest country, income per hour of human capital is", poorest_income_per_hour_of_human_capital)
+print ("for the poorest country, income per hour of human capital is", poorest_income_per_hour_of_human_capital)
 
 #Countries in different percentiles: 
 
@@ -186,7 +186,7 @@ df_subset_2019['ykh'] = (df_subset_2019["cgdpo"] / (df_subset_2019["emp"])) / df
 df_subset_2019['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
 
 success1_TFP = var_log_TFP/ var_log_y
-#print ("success 1 TFP is", success1_TFP)
+print ("success 1 TFP is", success1_TFP)
 
 
 #OECD
@@ -331,7 +331,6 @@ for x_variables_European, y_variables_European in itertools.product(x_variables_
     plt.show()
     plt.close()
 
-
 #OECD
 
 var_log_y_kh = statistics.variance(np.log((df_OECD["cgdpo"] / df_OECD["emp"]) / df_OECD["ctfp"]))
@@ -422,7 +421,7 @@ for (q, r) in zip (q_list, r_list):
     print(("percentile", q, df_above_median.loc[df_above_median['y'] == df_above_median.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_above_median.loc[df_above_median['y'] == df_above_median.quantile((r), interpolation='nearest')['y']]))  
 
-#below
+#Below
 
 var_log_y_kh = statistics.variance(np.log((df_below_median["cgdpo"] / df_below_median["emp"]) / df_below_median["ctfp"]))
 var_log_y = statistics.variance(np.log((df_below_median["cgdpo"]) / df_below_median['emp']))
