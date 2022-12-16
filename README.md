@@ -338,8 +338,8 @@ var_log_y = statistics.variance(np.log((df_OECD["cgdpo"]) / df_OECD['emp']))
 df_OECD['ykh'] = (df_OECD["cgdpo"] / (df_OECD["emp"])) / df_OECD["ctfp"]
 df_OECD['y'] = df_OECD["cgdpo"] / df_OECD['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_OECD = var_log_y_kh / var_log_y
+print ("success 1 is", success1_OECD)
 
 df_subset_q1_success_OECD = {}
 df_subset_q2_success_OECD = {}
@@ -368,8 +368,8 @@ var_log_y = statistics.variance(np.log((df_non_OECD["cgdpo"]) / df_non_OECD['emp
 df_non_OECD['ykh'] = (df_non_OECD["cgdpo"] / (df_non_OECD["emp"])) / df_non_OECD["ctfp"]
 df_non_OECD['y'] = df_non_OECD["cgdpo"] / df_non_OECD['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_non_OECD = var_log_y_kh / var_log_y
+print ("success 1 is", success1_non_OECD)
 
 df_subset_q1_success_non_OECD = {}
 df_subset_q2_success_non_OECD = {}
@@ -398,8 +398,8 @@ var_log_y = statistics.variance(np.log((df_above_median["cgdpo"]) / df_above_med
 df_above_median['ykh'] = (df_above_median["cgdpo"] / (df_above_median["emp"])) / df_above_median["ctfp"]
 df_above_median['y'] = df_above_median["cgdpo"] / df_above_median['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_above_median = var_log_y_kh / var_log_y
+print ("success 1 is", success1_above_median)
 
 df_subset_q1_success_above_median = {}
 df_subset_q2_success_above_median = {}
@@ -428,8 +428,8 @@ var_log_y = statistics.variance(np.log((df_below_median["cgdpo"]) / df_below_med
 df_below_median['ykh'] = (df_below_median["cgdpo"] / (df_below_median["emp"])) / df_below_median["ctfp"]
 df_below_median['y'] = df_below_median["cgdpo"] / df_below_median['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_below_median = var_log_y_kh / var_log_y
+print ("success 1 is", success1_below_median)
 
 df_subset_q1_success_below_median = {}
 df_subset_q2_success_below_median = {}
@@ -459,8 +459,8 @@ var_log_y = statistics.variance(np.log((df_European["cgdpo"]) / df_European['emp
 df_European['ykh'] = (df_European["cgdpo"] / (df_European["emp"])) / df_European["ctfp"]
 df_European['y'] = df_European["cgdpo"] / df_European['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_European = var_log_y_kh / var_log_y
+print ("success 1 is", success1_European)
 
 df_subset_q1_success_European = {}
 df_subset_q2_success_European= {}
@@ -489,8 +489,8 @@ var_log_y = statistics.variance(np.log((df_Asian_Oceanic["cgdpo"]) / df_Asian_Oc
 df_Asian_Oceanic['ykh'] = (df_Asian_Oceanic["cgdpo"] / (df_Asian_Oceanic["emp"])) / df_Asian_Oceanic["ctfp"]
 df_Asian_Oceanic['y'] = df_Asian_Oceanic["cgdpo"] / df_Asian_Oceanic['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_Asian_Oceanic = var_log_y_kh / var_log_y
+print ("success 1 is", success1_Asian_Oceanic)
 
 df_subset_q1_success_Asian_Oceanic = {}
 df_subset_q2_success_Asian_Oceanic = {}
@@ -519,8 +519,8 @@ var_log_y = statistics.variance(np.log((df_Americas["cgdpo"]) / df_Americas['emp
 df_Americas['ykh'] = (df_Americas["cgdpo"] / (df_Americas["emp"])) / df_Americas["ctfp"]
 df_Americas['y'] = df_Americas["cgdpo"] / df_Americas['emp']
 
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
+success1_Americas = var_log_y_kh / var_log_y
+print ("success 1 is", success1_Americas)
 
 df_subset_q1_success_Americas= {}
 df_subset_q2_success_Americas = {}
