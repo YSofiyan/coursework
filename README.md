@@ -192,40 +192,6 @@ df_subset_2019['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
 
 success1_TFP = var_log_TFP/ var_log_y
 #print ("success 1 TFP is", success1_TFP)
-
-
-#OECD
-OECD_countries = ["Luxembourg", "Ireland", "Switzerland", "Norway", "United States", "Iceland", "Netherlands", "Austria", "Denmark", "Australia", "Germany", "Belgium", "Finland", "Canada", "United Kingdom", "France", "Japan", "Italy", "New Zealand", "Israel", "Czech Republic", "Spain", "Slovenia", "Estonia", "Slovakia", "Portugal", "Poland", "Hungary", "Greece", "Turkey", "Chile", "Mexico", "Sweden"]
-df_OECD = df_subset_2019[df_subset_2019["country"].isin(OECD_countries)].copy()
-df_non_OECD = df_subset_2019[df_subset_2019["country"].isin(OECD_countries) == False].copy()
-
-var_log_y_kh = statistics.variance(np.log((df_OECD["cgdpo"] / df_OECD["emp"]) / df_OECD["ctfp"]))
-var_log_y = statistics.variance(np.log((df_OECD["cgdpo"]) / df_OECD['emp']))
-df_OECD['ykh'] = (df_OECD["cgdpo"] / (df_OECD["emp"])) / df_OECD["ctfp"]
-df_OECD['y'] = df_OECD["cgdpo"] / df_OECD['emp']
-
-success1 = var_log_y_kh / var_log_y
-print ("success 1 is", success1)
-
-df_subset_q1_success_OECD = {}
-df_subset_q2_success_OECD = {}
-success_2_OECD = {}
-df_subbset_y_success_OECD = {}
-df_subset_ykh_success_OECD = {}
-
-q_list = [0.99, 0.95, 0.9, 0.75]
-r_list = [0.01, 0.05, 0.1, 0.25]
-for (q, r) in zip (q_list, r_list):
-    df_subset_q1_success_OECD[q] = df_OECD['y'].quantile(q)
-    df_subset_q1_success_OECD[r] = df_OECD['y'].quantile(r)
-    df_subbset_y_success_OECD[q,r] = (df_subset_q1_success_OECD[q]/df_subset_q1_success_OECD[r])
-    df_subset_q2_success_OECD[q] = df_OECD['ykh'].quantile(q)
-    df_subset_q2_success_OECD[r] = df_OECD['ykh'].quantile(r)
-    df_subset_ykh_success_OECD[q,r] = (df_subset_q2_success_OECD[q]/df_subset_q2_success_OECD[r])
-    success_2_OECD[q] = (df_subset_ykh_success_OECD[q,r]/ df_subbset_y_success_OECD[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_OECD[q]))
-    print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
-    print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
     
 #Question 9
 
