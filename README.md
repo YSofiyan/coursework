@@ -92,6 +92,8 @@ print ("The GDP per worker ratio between the countries in the 95th and 5th perce
 #Tabulate results 
 from tabulate import tabulate
 
+#Tabulate results 
+from tabulate import tabulate
 
 table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Income per Unit of Human Capital","Income per Hour of Human Capital"],
 ["United States", float(richest_income_per_worker), float(richest_income_per_hour_worked), float(richest_income_per_unit_of_human_capital), float(richest_income_per_hour_of_human_capital)],
@@ -102,7 +104,7 @@ table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Incom
 ["Malta", float(poorest_income_per_worker), float(poorest_income_per_hour_worked), float(poorest_income_per_unit_of_human_capital), float(poorest_income_per_hour_of_human_capital)]]
 print(tabulate(table1_data, headers='firstrow', tablefmt='fancy_grid'))
 
-table2_data = [["Percentiles", "Countries" , "GDP ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile]]
+table2_data = [["Percentiles", "Countries" , "GDP ratio", "GDP per worker ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest,GDP_per_worker_ratio_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile,GDP_per_worker_ratio_5th_95th_percentile ], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile,GDP_per_worker_ratio_10th_90th_percentile]]
 print(tabulate(table2_data, headers='firstrow', tablefmt='grid'))
 
 #Question 5
@@ -119,9 +121,6 @@ df_subset_2019['log_gdp_per_hour_human_capital'] = np.log(df_subset_2019["cgdpo"
 df_subset_2019['share_of_labour_compensation_in_GDP'] = ((-1 * df_subset_2019['labsh']) + 1)
 x_variables = list(['log_gdp_per_capita', 'log_gdp_per_worker', 'log_gdp_per_hour_worked', 'log_gdp_per_hour_human_capital'])
 y_variables = list(['cn', 'hc', 'avh', 'ctfp', 'share_of_labour_compensation_in_GDP'])
-
-table2_data = [["Percentiles", "Countries" , "GDP ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile]]
-print(tabulate(table2_data, headers='firstrow', tablefmt='grid'))
 
 import itertools
 
