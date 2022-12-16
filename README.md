@@ -33,6 +33,9 @@ for year in range (2010, 2020):
  
 #Gettinmg the country with highest and lowest GDP at current PPP
 
+df_subset_2019 = df_subset[(df_subset['year'] == 2019)].dropna()
+print (df_subset_2019)
+
 df_rich_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].max()]
 df_poor_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].min()]
 
@@ -85,6 +88,18 @@ GDP_per_worker_ratio_10th_90th_percentile = income_per_worker[0.9] / income_per_
 print ("The GDP per worker ratio between the countries in the 90th and 10th percentiles is", GDP_per_worker_ratio_10th_90th_percentile, ":1")
 GDP_per_worker_ratio_5th_95th_percentile = income_per_worker[0.95] / income_per_worker[0.05]
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
+
+table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Income per Unit of Human Capital","Income per Hour of Human Capital"],
+["United States", float(richest_income_per_worker), float(richest_income_per_hour_worked), float(richest_income_per_unit_of_human_capital), float(richest_income_per_hour_of_human_capital)],
+["Japan", float(income_per_worker[0.95]), float(income_per_hour_worked[0.95]), float(income_per_unit_of_human_capital[0.95]), float(income_per_hour_of_human_capital[0.95])],
+["Indonesia", float(income_per_worker[0.9]), float(income_per_hour_worked[0.9]), float(income_per_unit_of_human_capital[0.9]), float(income_per_hour_of_human_capital[0.9])],
+["Uruguay", float(income_per_worker[0.1]), float(income_per_hour_worked[0.1]), float(income_per_unit_of_human_capital[0.1]), float(income_per_hour_of_human_capital[0.1])],
+["Estonia", float(income_per_worker[0.05]), float(income_per_hour_worked[0.05]), float(income_per_unit_of_human_capital[0.05]), float(income_per_hour_of_human_capital[0.05])],
+["Malta", float(poorest_income_per_worker), float(poorest_income_per_hour_worked), float(poorest_income_per_unit_of_human_capital), float(poorest_income_per_hour_of_human_capital)]]
+print(tabulate(table1_data, headers='firstrow', tablefmt='fancy_grid'))
+
+table2_data = [["Percentiles", "Countries" , "GDP ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile]]
+print(tabulate(table2_data, headers='firstrow', tablefmt='grid'))
 
 #Question 5
 
