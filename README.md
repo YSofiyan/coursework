@@ -1,6 +1,6 @@
-# coursework
+# Numerical Methods Coursework
 
-###1
+#Question 1:
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -9,7 +9,7 @@ import numpy as np
 fp = "https://raw.githubusercontent.com/jivizcaino/PWT_10.0/main/pwt100.csv"
 df = pd.read_csv(fp,encoding='latin-1')
 
-###2
+#Question 2:
 
 #Creating a subset for variables in interest
 df_subset = df[['cgdpo', 'emp', 'avh', 'hc', 'countrycode', 'year', 'country', 'cn', 'pop', 'ctfp','labsh']].dropna()
@@ -29,7 +29,7 @@ for year in range (2010, 2020):
 
 #Question 3:
  
-#Getting the country with highest and lowest GDP at current PPP
+#Getting the country with the highest and lowest GDP at current PPP:
 
 df_subset_2019 = df_subset[(df_subset['year'] == 2019)].dropna()
 print (df_subset_2019)
@@ -100,9 +100,10 @@ table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Incom
 print(tabulate(table1_data, headers='firstrow', tablefmt='fancy_grid'))
 
 table2_data = [["Percentiles", "Countries" , "GDP ratio", "GDP per worker ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest,GDP_per_worker_ratio_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile,GDP_per_worker_ratio_5th_95th_percentile ], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile,GDP_per_worker_ratio_10th_90th_percentile]]
-print(tabulate(table2_data, headers='firstrow', tablefmt='grid'))
+print(tabulate(table2_data, headers='firstrow', tablefmt='fancy_grid'))
 
 #Question 4:
+
 #Standard of living for each country can be denoted by the income per worker. The differences in human capital and hours worked can be a useful way to explain differences in standard of living. Having greater access to human capital suggests that a country has better education resources, improving the economies innovation and social well-being, helping the economy grow, improving standard of living as income per worker will rise as the economy grows. As well as this, having a greater income per hour worked will also increase the standard of living because it means that the workers will get more benefit from their time spent working, increasing the income per capita. This is supported by the results in our table 1 and table 2. As we have seen in table 1, for the richest and poorest countries, the US has greater income per Hour Worked, income per Unit of Human Capital, compared to Malta resulting in a standard of living that is 1.65 times bigger as the magnitude of the differences in income per worker is 1.65. This helps contribute to the fact that the GDP ratio between the USA and Malta is 1186.69. For the countries in the 95th and 5th percentile, the country in the 95th percentile, Japan, has greater income per Hour Worked, income per Unit of Human Capital, compared to the country in the 5th percentile, Estonia, resulting in a standard of living that is 1.07 times bigger as the magnitude of the differences in income per worker is 1.07, this small due to the fact that these countries are similar in terms of these measures. However, the GDP ratio of Japan to Estonia is 111.62, this is because Japan’s population is significantly bigger, hence reflecting their superior GDP, whilst having a similar standard of living. For the countries in the 90th and 10th percentile, the country in the 90th percentile, Indonesia, has lower income per Hour Worked, income per Unit of Human Capital, compared to the country in the 10th percentile, Uruguay, resulting in a standard of living that is 0.55 times smaller as the magnitude of the differences in income per worker is 0.55. Despite having a significant GDP, Indonesia’s standard of living is proved to be extremely poor due to their weak income per hour worked and poor human capital. The GDP ratio between Indonesia and Uruguay is 43.7577, Indonesia has a greater GDP due to their much larger population, making up for their lack of income per capita. A better indicator of standard of living may be to use the HDI index because it considers other factors that will affect the standard of living in a country.
 
 #Question 5:
@@ -188,7 +189,6 @@ df_subset_2019['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
 success1_TFP = var_log_TFP/ var_log_y
 print ("success 1 TFP is", success1_TFP)
 
-
 #OECD
 OECD_countries = ["Luxembourg", "Ireland", "Switzerland", "Norway", "United States", "Iceland", "Netherlands", "Austria", "Denmark", "Australia", "Germany", "Belgium", "Finland", "Canada", "United Kingdom", "France", "Japan", "Italy", "New Zealand", "Israel", "Czech Republic", "Spain", "Slovenia", "Estonia", "Slovakia", "Portugal", "Poland", "Hungary", "Greece", "Turkey", "Chile", "Mexico", "Sweden"]
 df_OECD = df_subset_2019[df_subset_2019["country"].isin(OECD_countries)].copy()
@@ -222,7 +222,7 @@ for (q, r) in zip (q_list, r_list):
     print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
     
-#Question 9
+#Question 9:
 
 #Graphs
 
@@ -331,6 +331,7 @@ for x_variables_European, y_variables_European in itertools.product(x_variables_
     plt.show()
     plt.close()
 
+#Success 1 values:
 #OECD
 
 var_log_y_kh = statistics.variance(np.log((df_OECD["cgdpo"] / df_OECD["emp"]) / df_OECD["ctfp"]))
@@ -361,7 +362,7 @@ for (q, r) in zip (q_list, r_list):
     print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
 
-#non-OECD
+#Non-OECD
 
 var_log_y_kh = statistics.variance(np.log((df_non_OECD["cgdpo"] / df_non_OECD["emp"]) / df_non_OECD["ctfp"]))
 var_log_y = statistics.variance(np.log((df_non_OECD["cgdpo"]) / df_non_OECD['emp']))
