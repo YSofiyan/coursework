@@ -40,7 +40,7 @@ df_rich_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo
 df_poor_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].min()]
 
 richest_income_per_worker = df_rich_country["cgdpo"] / df_rich_country["emp"]
-print ("for the richest country, income per worker is", richest_income per worker)
+print ("for the richest country, income per worker is", richest_income_per_worker)
 poorest_income_per_worker = df_poor_country["cgdpo"] / df_poor_country["emp"]
 print ("for the poorest country, income per worker is", poorest_income_per_worker)
 richest_income_per_hour_worked = df_rich_country["cgdpo"] / (df_rich_country["emp"] * df_rich_country["avh"])
@@ -88,6 +88,9 @@ GDP_per_worker_ratio_10th_90th_percentile = income_per_worker[0.9] / income_per_
 print ("The GDP per worker ratio between the countries in the 90th and 10th percentiles is", GDP_per_worker_ratio_10th_90th_percentile, ":1")
 GDP_per_worker_ratio_5th_95th_percentile = income_per_worker[0.95] / income_per_worker[0.05]
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
+
+#Tabulate results 
+from tabulate import tabulate
 
 table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Income per Unit of Human Capital","Income per Hour of Human Capital"],
 ["United States", float(richest_income_per_worker), float(richest_income_per_hour_worked), float(richest_income_per_unit_of_human_capital), float(richest_income_per_hour_of_human_capital)],
