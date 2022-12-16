@@ -39,22 +39,22 @@ print (df_subset_2019)
 df_rich_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].max()]
 df_poor_country = df_subset_2019.loc[df_subset['cgdpo'] == df_subset_2019['cgdpo'].min()]
 
-richest_income_per_worker = df_rich_country["cgdpo"] / df_rich_country["emp"]
-print ("for the richest country, income per worker is", richest_income_per_worker)
-poorest_income_per_worker = df_poor_country["cgdpo"] / df_poor_country["emp"]
-print ("for the poorest country, income per worker is", poorest_income_per_worker)
-richest_income_per_hour_worked = df_rich_country["cgdpo"] / (df_rich_country["emp"] * df_rich_country["avh"])
-print ("for the richest country, income per hour worked is", richest_income_per_hour_worked)
-poorest_income_per_hour_worked = df_poor_country["cgdpo"] / (df_poor_country["emp"] * df_poor_country["avh"])
-print ("for the poorest country, income per hour worked is", poorest_income_per_hour_worked)
-richest_income_per_unit_of_human_capital = df_rich_country['cgdpo']/ (df_rich_country['emp'] * df_rich_country['hc'])
-print ("for the richest country, income per unit of human capital  is", richest_income_per_unit_of_human_capital)
-poorest_income_per_unit_of_human_capital = df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc'])
-print ("for the poorest country, income per worker is", poorest_income_per_unit_of_human_capital)
-richest_income_per_hour_of_human_capital = df_rich_country['cgdpo']/ (df_rich_country['emp'] * df_rich_country['hc'] * df_rich_country['avh'])
-print ("for the richest country, income per hour of human capital is", richest_income_per_hour_of_human_capital)
-poorest_income_per_hour_of_human_capital = df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc'] * df_poor_country['avh'])
-print ("for the poorest country, income per hour of human capital is", poorest_income_per_hour_of_human_capital)
+richest_income_per_worker = float(df_rich_country["cgdpo"] / df_rich_country["emp"])
+#print ("for the richest country, income per worker is", richest_income_per_worker)
+poorest_income_per_worker = float(df_poor_country["cgdpo"] / df_poor_country["emp"])
+#print ("for the poorest country, income per worker is", poorest_income_per_worker)
+richest_income_per_hour_worked = float(df_rich_country["cgdpo"] / (df_rich_country["emp"] * df_rich_country["avh"]))
+#print ("for the richest country, income per hour worked is", richest_income_per_hour_worked)
+poorest_income_per_hour_worked = float(df_poor_country["cgdpo"] / (df_poor_country["emp"] * df_poor_country["avh"]))
+#print ("for the poorest country, income per hour worked is", poorest_income_per_hour_worked)
+richest_income_per_unit_of_human_capital = float(df_rich_country['cgdpo']/ (df_rich_country['emp'] * df_rich_country['hc']))
+#print ("for the richest country, income per unit of human capital  is", richest_income_per_unit_of_human_capital)
+poorest_income_per_unit_of_human_capital = float(df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc']))
+#print ("for the poorest country, income per worker is", poorest_income_per_unit_of_human_capital)
+richest_income_per_hour_of_human_capital = float(df_rich_country['cgdpo']/ (df_rich_country['emp'] * df_rich_country['hc'] * df_rich_country['avh']))
+#print ("for the richest country, income per hour of human capital is", richest_income_per_hour_of_human_capital)
+poorest_income_per_hour_of_human_capital = float (df_poor_country['cgdpo']/ (df_poor_country['emp'] * df_poor_country['hc'] * df_poor_country['avh']))
+#print ("for the poorest country, income per hour of human capital is", poorest_income_per_hour_of_human_capital)
 
 #Countries in different quantiles 
 
@@ -76,21 +76,18 @@ for q in (0.05, 0.1, 0.9, 0.95):
  
 #Ratios between richest and poorest countries and between percentiles 
 
-GDP_ratio_between_richest_and_poorest = df_rich_country['cgdpo'] / df_poor_country['cgdpo']
+GDP_ratio_between_richest_and_poorest = float(df_rich_country['cgdpo']) / float(df_poor_country['cgdpo'])
 print ('The GDP ratio between the richest and poorest countries is', GDP_ratio_between_richest_and_poorest, ': 1')
 GDP_ratio_between_5th_95th_percentile = float(df_subset_q[0.95]['cgdpo']) / float(df_subset_q[0.05]['cgdpo'])
 print ("The GDP ratio between the countries in the 95th and 5th percentiles is", GDP_ratio_between_5th_95th_percentile, ":1")
 GDP_ratio_between_10th_90th_percentile = float(df_subset_q[0.9]['cgdpo']) / float(df_subset_q[0.1]['cgdpo'])
 print ("The GDP ratio between the countries in the 90th and 10th percentiles is", GDP_ratio_between_10th_90th_percentile, ":1")
-GDP_per_worker_ratio_richest_and_poorest = richest_income_per_worker / poorest_income_per_worker
+GDP_per_worker_ratio_richest_and_poorest = float(richest_income_per_worker) / float(poorest_income_per_worker)
 print ("The GDP per worker ratio between the richest and poorest countries is", GDP_per_worker_ratio_richest_and_poorest, ":1")
-GDP_per_worker_ratio_10th_90th_percentile = income_per_worker[0.9] / income_per_worker[0.1]
+GDP_per_worker_ratio_10th_90th_percentile = float(income_per_worker[0.9]) / float(income_per_worker[0.1])
 print ("The GDP per worker ratio between the countries in the 90th and 10th percentiles is", GDP_per_worker_ratio_10th_90th_percentile, ":1")
-GDP_per_worker_ratio_5th_95th_percentile = income_per_worker[0.95] / income_per_worker[0.05]
+GDP_per_worker_ratio_5th_95th_percentile = float(income_per_worker[0.95]) / float(income_per_worker[0.05])
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
-
-#Tabulate results 
-from tabulate import tabulate
 
 table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Income per Unit of Human Capital","Income per Hour of Human Capital"],
 ["United States", float(richest_income_per_worker), float(richest_income_per_hour_worked), float(richest_income_per_unit_of_human_capital), float(richest_income_per_hour_of_human_capital)],
