@@ -226,3 +226,241 @@ for (q, r) in zip (q_list, r_list):
     print("for percentiles", q, "and", r, "success 2 is", (success_2_OECD[q]))
     print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
+    
+#Question 9
+
+#OECD
+
+var_log_y_kh = statistics.variance(np.log((df_OECD["cgdpo"] / df_OECD["emp"]) / df_OECD["ctfp"]))
+var_log_y = statistics.variance(np.log((df_OECD["cgdpo"]) / df_OECD['emp']))
+df_OECD['ykh'] = (df_OECD["cgdpo"] / (df_OECD["emp"])) / df_OECD["ctfp"]
+df_OECD['y'] = df_OECD["cgdpo"] / df_OECD['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_OECD = {}
+df_subset_q2_success_OECD = {}
+success_2_OECD = {}
+df_subbset_y_success_OECD = {}
+df_subset_ykh_success_OECD = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_OECD[q] = df_OECD['y'].quantile(q)
+    df_subset_q1_success_OECD[r] = df_OECD['y'].quantile(r)
+    df_subbset_y_success_OECD[q,r] = (df_subset_q1_success_OECD[q]/df_subset_q1_success_OECD[r])
+    df_subset_q2_success_OECD[q] = df_OECD['ykh'].quantile(q)
+    df_subset_q2_success_OECD[r] = df_OECD['ykh'].quantile(r)
+    df_subset_ykh_success_OECD[q,r] = (df_subset_q2_success_OECD[q]/df_subset_q2_success_OECD[r])
+    success_2_OECD[q] = (df_subset_ykh_success_OECD[q,r]/ df_subbset_y_success_OECD[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_OECD[q]))
+    print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
+
+#non-OECD
+
+var_log_y_kh = statistics.variance(np.log((df_non_OECD["cgdpo"] / df_non_OECD["emp"]) / df_non_OECD["ctfp"]))
+var_log_y = statistics.variance(np.log((df_non_OECD["cgdpo"]) / df_non_OECD['emp']))
+df_non_OECD['ykh'] = (df_non_OECD["cgdpo"] / (df_non_OECD["emp"])) / df_non_OECD["ctfp"]
+df_non_OECD['y'] = df_non_OECD["cgdpo"] / df_non_OECD['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_non_OECD = {}
+df_subset_q2_success_non_OECD = {}
+success_2_non_OECD = {}
+df_subbset_y_success_non_OECD = {}
+df_subset_ykh_success_non_OECD = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_non_OECD[q] = df_non_OECD['y'].quantile(q)
+    df_subset_q1_success_non_OECD[r] = df_non_OECD['y'].quantile(r)
+    df_subbset_y_success_non_OECD[q,r] = (df_subset_q1_success_non_OECD[q]/df_subset_q1_success_non_OECD[r])
+    df_subset_q2_success_non_OECD[q] = df_non_OECD['ykh'].quantile(q)
+    df_subset_q2_success_non_OECD[r] = df_non_OECD['ykh'].quantile(r)
+    df_subset_ykh_success_non_OECD[q,r] = (df_subset_q2_success_non_OECD[q]/df_subset_q2_success_non_OECD[r])
+    success_2_non_OECD[q] = (df_subset_ykh_success_non_OECD[q,r]/ df_subbset_y_success_non_OECD[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_non_OECD[q]))
+    print(("percentile", q, df_non_OECD.loc[df_non_OECD['y'] == df_non_OECD.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_non_OECD.loc[df_non_OECD['y'] == df_non_OECD.quantile((r), interpolation='nearest')['y']]))  
+    
+#Above and below median 
+
+var_log_y_kh = statistics.variance(np.log((df_above_median["cgdpo"] / df_above_median["emp"]) / df_above_median["ctfp"]))
+var_log_y = statistics.variance(np.log((df_above_median["cgdpo"]) / df_above_median['emp']))
+df_above_median['ykh'] = (df_above_median["cgdpo"] / (df_above_median["emp"])) / df_above_median["ctfp"]
+df_above_median['y'] = df_above_median["cgdpo"] / df_above_median['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_above_median = {}
+df_subset_q2_success_above_median = {}
+success_2_above_median = {}
+df_subbset_y_success_above_median = {}
+df_subset_ykh_success_above_median = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_above_median[q] = df_above_median['y'].quantile(q)
+    df_subset_q1_success_above_median[r] = df_above_median['y'].quantile(r)
+    df_subbset_y_success_above_median[q,r] = (df_subset_q1_success_above_median[q]/df_subset_q1_success_above_median[r])
+    df_subset_q2_success_above_median[q] = df_above_median['ykh'].quantile(q)
+    df_subset_q2_success_above_median[r] = df_above_median['ykh'].quantile(r)
+    df_subset_ykh_success_above_median[q,r] = (df_subset_q2_success_above_median[q]/df_subset_q2_success_above_median[r])
+    success_2_above_median[q] = (df_subset_ykh_success_above_median[q,r]/ df_subbset_y_success_above_median[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_above_median[q]))
+    print(("percentile", q, df_above_median.loc[df_above_median['y'] == df_above_median.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_above_median.loc[df_above_median['y'] == df_above_median.quantile((r), interpolation='nearest')['y']]))  
+
+#below
+
+var_log_y_kh = statistics.variance(np.log((df_below_median["cgdpo"] / df_below_median["emp"]) / df_below_median["ctfp"]))
+var_log_y = statistics.variance(np.log((df_below_median["cgdpo"]) / df_below_median['emp']))
+df_below_median['ykh'] = (df_below_median["cgdpo"] / (df_below_median["emp"])) / df_below_median["ctfp"]
+df_below_median['y'] = df_below_median["cgdpo"] / df_below_median['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_below_median = {}
+df_subset_q2_success_below_median = {}
+success_2_below_median = {}
+df_subbset_y_success_below_median = {}
+df_subset_ykh_success_below_median = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_below_median[q] = df_below_median['y'].quantile(q)
+    df_subset_q1_success_below_median[r] = df_below_median['y'].quantile(r)
+    df_subbset_y_success_below_median[q,r] = (df_subset_q1_success_below_median[q]/df_subset_q1_success_below_median[r])
+    df_subset_q2_success_below_median[q] = df_below_median['ykh'].quantile(q)
+    df_subset_q2_success_below_median[r] = df_below_median['ykh'].quantile(r)
+    df_subset_ykh_success_below_median[q,r] = (df_subset_q2_success_below_median[q]/df_subset_q2_success_below_median[r])
+    success_2_below_median[q] = (df_subset_ykh_success_below_median[q,r]/ df_subbset_y_success_below_median[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_below_median[q]))
+    print(("percentile", q, df_below_median.loc[df_below_median['y'] == df_below_median.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_below_median.loc[df_below_median['y'] == df_below_median.quantile((r), interpolation='nearest')['y']]))  
+    
+#Continents 
+#Eurpoe
+
+var_log_y_kh = statistics.variance(np.log((df_European["cgdpo"] / df_European["emp"]) / df_European["ctfp"]))
+var_log_y = statistics.variance(np.log((df_European["cgdpo"]) / df_European['emp']))
+df_European['ykh'] = (df_European["cgdpo"] / (df_European["emp"])) / df_European["ctfp"]
+df_European['y'] = df_European["cgdpo"] / df_European['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_European = {}
+df_subset_q2_success_European= {}
+success_2_European = {}
+df_subbset_y_success_European = {}
+df_subset_ykh_success_European = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_European[q] = df_European['y'].quantile(q)
+    df_subset_q1_success_European[r] = df_European['y'].quantile(r)
+    df_subbset_y_success_European[q,r] = (df_subset_q1_success_European[q]/df_subset_q1_success_European[r])
+    df_subset_q2_success_European[q] = df_European['ykh'].quantile(q)
+    df_subset_q2_success_European[r] = df_European['ykh'].quantile(r)
+    df_subset_ykh_success_European[q,r] = (df_subset_q2_success_European[q]/df_subset_q2_success_European[r])
+    success_2_European[q] = (df_subset_ykh_success_European[q,r]/ df_subbset_y_success_European[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_European[q]))
+    print(("percentile", q, df_European.loc[df_European['y'] == df_European.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_European.loc[df_European['y'] == df_European.quantile((r), interpolation='nearest')['y']]))  
+    
+#Asian and Oceanic
+
+var_log_y_kh = statistics.variance(np.log((df_Asian_Oceanic["cgdpo"] / df_Asian_Oceanic["emp"]) / df_Asian_Oceanic["ctfp"]))
+var_log_y = statistics.variance(np.log((df_Asian_Oceanic["cgdpo"]) / df_Asian_Oceanic['emp']))
+df_Asian_Oceanic['ykh'] = (df_Asian_Oceanic["cgdpo"] / (df_Asian_Oceanic["emp"])) / df_Asian_Oceanic["ctfp"]
+df_Asian_Oceanic['y'] = df_Asian_Oceanic["cgdpo"] / df_Asian_Oceanic['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_Asian_Oceanic = {}
+df_subset_q2_success_Asian_Oceanic = {}
+success_2_Asian_Oceanic = {}
+df_subbset_y_success_Asian_Oceanic = {}
+df_subset_ykh_success_Asian_Oceanic = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_Asian_Oceanic[q] = df_Asian_Oceanic['y'].quantile(q)
+    df_subset_q1_success_Asian_Oceanic[r] = df_Asian_Oceanic['y'].quantile(r)
+    df_subbset_y_success_Asian_Oceanic[q,r] = (df_subset_q1_success_Asian_Oceanic[q]/df_subset_q1_success_Asian_Oceanic[r])
+    df_subset_q2_success_Asian_Oceanic[q] = df_Asian_Oceanic['ykh'].quantile(q)
+    df_subset_q2_success_Asian_Oceanic[r] = df_Asian_Oceanic['ykh'].quantile(r)
+    df_subset_ykh_success_Asian_Oceanic[q,r] = (df_subset_q2_success_Asian_Oceanic[q]/df_subset_q2_success_Asian_Oceanic[r])
+    success_2_Asian_Oceanic[q] = (df_subset_ykh_success_Asian_Oceanic[q,r]/ df_subbset_y_success_Asian_Oceanic[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_Asian_Oceanic[q]))
+    print(("percentile", q, df_Asian_Oceanic.loc[df_Asian_Oceanic['y'] == df_Asian_Oceanic.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_Asian_Oceanic.loc[df_Asian_Oceanic['y'] == df_Asian_Oceanic.quantile((r), interpolation='nearest')['y']]))  
+
+#Americas
+
+var_log_y_kh = statistics.variance(np.log((df_Americas["cgdpo"] / df_Americas["emp"]) / df_Americas["ctfp"]))
+var_log_y = statistics.variance(np.log((df_Americas["cgdpo"]) / df_Americas['emp']))
+df_Americas['ykh'] = (df_Americas["cgdpo"] / (df_Americas["emp"])) / df_Americas["ctfp"]
+df_Americas['y'] = df_Americas["cgdpo"] / df_Americas['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success_Americas= {}
+df_subset_q2_success_Americas = {}
+success_2_Americas = {}
+df_subbset_y_success_Americas = {}
+df_subset_ykh_success_Americas = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_Americas[q] = df_Americas['y'].quantile(q)
+    df_subset_q1_success_Americas[r] = df_Americas['y'].quantile(r)
+    df_subbset_y_success_Americas[q,r] = (df_subset_q1_success_Americas[q]/df_subset_q1_success_Americas[r])
+    df_subset_q2_success_Americas[q] = df_Americas['ykh'].quantile(q)
+    df_subset_q2_success_Americas[r] = df_Americas['ykh'].quantile(r)
+    df_subset_ykh_success_Americas[q,r] = (df_subset_q2_success_Americas[q]/df_subset_q2_success_Americas[r])
+    success_2_Americas[q] = (df_subset_ykh_success_Americas[q,r]/ df_subbset_y_success_Americas[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_Americas[q]))
+    print(("percentile", q, df_Americas.loc[df_Americas['y'] == df_Americas.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_Americas.loc[df_Americas['y'] == df_Americas.quantile((r), interpolation='nearest')['y']]))  
+    
+#African
+
+#There is only one data point here for Africa so cannot workout the variance required for success 1
+#This will also mean that success 2 is just 1
+
+df_subset_q1_success_African = {}
+df_subset_q2_success_African = {}
+success_2_African = {}
+df_subbset_y_success_African = {}
+df_subset_ykh_success_African = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success_African[q] = df_African['y'].quantile(q)
+    df_subset_q1_success_African[r] = df_African['y'].quantile(r)
+    df_subbset_y_success_African[q,r] = (df_subset_q1_success_African[q]/df_subset_q1_success_African[r])
+    df_subset_q2_success_African[q] = df_African['ykh'].quantile(q)
+    df_subset_q2_success_African[r] = df_African['ykh'].quantile(r)
+    df_subset_ykh_success_African[q,r] = (df_subset_q2_success_African[q]/df_subset_q2_success_African[r])
+    success_2_African[q] = (df_subset_ykh_success_African[q,r]/ df_subbset_y_success_African[q,r])
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_African[q]))
+    print(("percentile", q, df_African.loc[df_African['y'] == df_African.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_African.loc[df_African['y'] == df_African.quantile((r), interpolation='nearest')['y']]))  
