@@ -109,3 +109,34 @@ for x_variables, y_variables in itertools.product(x_variables, y_variables):
     df_subset_2019_2[[x_variables, y_variables, "countrycode"]].apply(lambda x: ax.text(*x), axis=1)   
 plt.show()
 plt.close()
+
+#Question 6
+
+import statistics
+
+var_log_y_kh = statistics.variance(np.log((df_subset_2019["cgdpo"] / df_subset_2019["emp"]) / df_subset_2019["ctfp"]))
+var_log_y = statistics.variance(np.log((df_subset_2019["cgdpo"]) / df_subset_2019['emp']))
+df_subset_2019_2['ykh'] = (df_subset_2019["cgdpo"] / (df_subset_2019["emp"])) / df_subset_2019["ctfp"]
+df_subset_2019_2['y'] = df_subset_2019["cgdpo"] / df_subset_2019['emp']
+
+success1 = var_log_y_kh / var_log_y
+print ("success 1 is", success1)
+
+df_subset_q1_success = {}
+df_subset_q2_success = {}
+success_2 = {}
+df_subset_y_success = {}
+df_subset_ykh_success = {}
+
+q_list = [0.99, 0.95, 0.9, 0.75]
+r_list = [0.01, 0.05, 0.1, 0.25]
+for (q, r) in zip (q_list, r_list):
+    df_subset_q1_success[q] = df_subset_2019_2['gdp_per_worker'].quantile(q)
+    df_subset_q1_success[r] = df_subset_2019_2['gdp_per_worker'].quantile(r)
+    df_subset_y_success[q,r] = (df_subset_q1_success[q]/df_subset_q1_success[r])
+    df_subset_q2_success[q] = df_subset_2019_2['ykh'].quantile(q)
+    df_subset_q2_success[r] = df_subset_2019_2['ykh'].quantile(r)
+    df_subset_ykh_success[q,r] = (df_subset_q2_success[q]/df_subset_q2_success[r])
+    success_2[q] = (df_subset_ykh_success[q,r]/ df_subset_y_success[q,r])
+    #print("for FIRST percentiles", q, "and", r, "the ratio is", (success_2[q]))
+    
