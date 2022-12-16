@@ -101,6 +101,9 @@ df_subset_2019['share_of_labour_compensation_in_GDP'] = ((-1 * df_subset_2019['l
 x_variables = list(['log_gdp_per_capita', 'log_gdp_per_worker', 'log_gdp_per_hour_worked', 'log_gdp_per_hour_human_capital'])
 y_variables = list(['cn', 'hc', 'avh', 'ctfp', 'share_of_labour_compensation_in_GDP'])
 
+table2_data = [["Percentiles", "Countries" , "GDP ratio"], ["Minimum and Maximum value for GDP", "Malta and United States",GDP_ratio_between_richest_and_poorest],["95th and 5th percentiles", "Japan and Estonia",GDP_ratio_between_5th_95th_percentile], ["90th and 10th percentiles", "Indonesia and Uruguay",GDP_ratio_between_10th_90th_percentile]]
+print(tabulate(table2_data, headers='firstrow', tablefmt='grid'))
+
 import itertools
 
 for x_variables, y_variables in itertools.product(x_variables, y_variables):
