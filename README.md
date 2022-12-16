@@ -357,7 +357,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_OECD[r] = df_OECD['ykh'].quantile(r)
     df_subset_ykh_success_OECD[q,r] = (df_subset_q2_success_OECD[q]/df_subset_q2_success_OECD[r])
     success_2_OECD[q] = (df_subset_ykh_success_OECD[q,r]/ df_subbset_y_success_OECD[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_OECD[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_OECD[q]), "for OECD countries")
     print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
 
@@ -387,7 +387,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_non_OECD[r] = df_non_OECD['ykh'].quantile(r)
     df_subset_ykh_success_non_OECD[q,r] = (df_subset_q2_success_non_OECD[q]/df_subset_q2_success_non_OECD[r])
     success_2_non_OECD[q] = (df_subset_ykh_success_non_OECD[q,r]/ df_subbset_y_success_non_OECD[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_non_OECD[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_non_OECD[q]), "for non-OECD countries")
     print(("percentile", q, df_non_OECD.loc[df_non_OECD['y'] == df_non_OECD.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_non_OECD.loc[df_non_OECD['y'] == df_non_OECD.quantile((r), interpolation='nearest')['y']]))  
 
@@ -417,7 +417,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_above_median[r] = df_above_median['ykh'].quantile(r)
     df_subset_ykh_success_above_median[q,r] = (df_subset_q2_success_above_median[q]/df_subset_q2_success_above_median[r])
     success_2_above_median[q] = (df_subset_ykh_success_above_median[q,r]/ df_subbset_y_success_above_median[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_above_median[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_above_median[q]), "for above median countries")
     print(("percentile", q, df_above_median.loc[df_above_median['y'] == df_above_median.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_above_median.loc[df_above_median['y'] == df_above_median.quantile((r), interpolation='nearest')['y']]))  
 
@@ -447,7 +447,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_below_median[r] = df_below_median['ykh'].quantile(r)
     df_subset_ykh_success_below_median[q,r] = (df_subset_q2_success_below_median[q]/df_subset_q2_success_below_median[r])
     success_2_below_median[q] = (df_subset_ykh_success_below_median[q,r]/ df_subbset_y_success_below_median[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_below_median[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_below_median[q]), "for below median countries")
     print(("percentile", q, df_below_median.loc[df_below_median['y'] == df_below_median.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_below_median.loc[df_below_median['y'] == df_below_median.quantile((r), interpolation='nearest')['y']]))  
     
@@ -478,7 +478,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_European[r] = df_European['ykh'].quantile(r)
     df_subset_ykh_success_European[q,r] = (df_subset_q2_success_European[q]/df_subset_q2_success_European[r])
     success_2_European[q] = (df_subset_ykh_success_European[q,r]/ df_subbset_y_success_European[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_European[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_European[q]), "for European countries")
     print(("percentile", q, df_European.loc[df_European['y'] == df_European.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_European.loc[df_European['y'] == df_European.quantile((r), interpolation='nearest')['y']]))  
     
@@ -508,7 +508,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_Asian_Oceanic[r] = df_Asian_Oceanic['ykh'].quantile(r)
     df_subset_ykh_success_Asian_Oceanic[q,r] = (df_subset_q2_success_Asian_Oceanic[q]/df_subset_q2_success_Asian_Oceanic[r])
     success_2_Asian_Oceanic[q] = (df_subset_ykh_success_Asian_Oceanic[q,r]/ df_subbset_y_success_Asian_Oceanic[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_Asian_Oceanic[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_Asian_Oceanic[q]), "for Asia and Oceanic countries")
     print(("percentile", q, df_Asian_Oceanic.loc[df_Asian_Oceanic['y'] == df_Asian_Oceanic.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_Asian_Oceanic.loc[df_Asian_Oceanic['y'] == df_Asian_Oceanic.quantile((r), interpolation='nearest')['y']]))  
 
@@ -538,7 +538,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_Americas[r] = df_Americas['ykh'].quantile(r)
     df_subset_ykh_success_Americas[q,r] = (df_subset_q2_success_Americas[q]/df_subset_q2_success_Americas[r])
     success_2_Americas[q] = (df_subset_ykh_success_Americas[q,r]/ df_subbset_y_success_Americas[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_Americas[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_Americas[q]), "for Americas countries")
     print(("percentile", q, df_Americas.loc[df_Americas['y'] == df_Americas.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_Americas.loc[df_Americas['y'] == df_Americas.quantile((r), interpolation='nearest')['y']]))  
     
@@ -566,7 +566,7 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_African[r] = df_African['ykh'].quantile(r)
     df_subset_ykh_success_African[q,r] = (df_subset_q2_success_African[q]/df_subset_q2_success_African[r])
     success_2_African[q] = (df_subset_ykh_success_African[q,r]/ df_subbset_y_success_African[q,r])
-    print("for percentiles", q, "and", r, "success 2 is", (success_2_African[q]))
+    print("for percentiles", q, "and", r, "success 2 is", (success_2_African[q]), "for African countries")
     print(("percentile", q, df_African.loc[df_African['y'] == df_African.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_African.loc[df_African['y'] == df_African.quantile((r), interpolation='nearest')['y']]))  
     
