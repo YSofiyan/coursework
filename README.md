@@ -159,6 +159,9 @@ for (q, r) in zip (q_list, r_list):
     df_subset_ykh_success[q,r] = (df_subset_q2_success[q]/df_subset_q2_success[r])
     success_2[q] = (df_subset_ykh_success[q,r]/ df_subset_y_success[q,r])
     print("for percentiles", q, "and", r, "the ratio is", (success_2[q]))
+    print ("success 1 TFP is", success1_TFP)
+    print(("percentile", q, df_subset_2019.loc[df_subset_2019['gdp_per_worker'] == df_subset_2019.quantile((q), interpolation='nearest')['gdp_per_worker']]))
+    print(("percentile", r, df_subset_2019.loc[df_subset_2019['gdp_per_worker'] == df_subset_2019.quantile((r), interpolation='nearest')['gdp_per_worker']]))  
   
 #Question 8:
 
@@ -174,7 +177,9 @@ for (q, r) in zip (q_list, r_list):
     df_subset_q2_success_TFP[r] = df_subset_2019['ctfp'].quantile(r)
     df_subset_TFP_success[q,r] = (df_subset_q2_success_TFP[q]/df_subset_q2_success_TFP[r])
     success_2_TFP[q] = (df_subset_TFP_success[q,r]/ df_subset_y_success[q,r])
-    #print("for percentiles", q, "and", r, "the ratio is", (success_2_TFP[q]))
+    print("for percentiles", q, "and", r, "the ratio is", (success_2_TFP[q]))
+    print(("percentile", q, df_subset_2019.loc[df_subset_2019['gdp_per_worker'] == df_subset_2019.quantile((q), interpolation='nearest')['gdp_per_worker']]))
+    print(("percentile", r, df_subset_2019.loc[df_subset_2019['gdp_per_worker'] == df_subset_2019.quantile((r), interpolation='nearest')['gdp_per_worker']]))
 
 var_log_y_kh = statistics.variance(np.log((df_subset_2019["cgdpo"] / df_subset_2019["emp"]) / df_subset_2019["ctfp"]))
 var_log_TFP = statistics.variance(np.log((df_subset_2019["ctfp"])))
