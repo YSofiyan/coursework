@@ -163,7 +163,7 @@ for (q, r) in zip (q_list, r_list):
     success_2[q] = (df_subset_ykh_success[q,r]/ df_subset_y_success[q,r])
     print("for percentiles", q, "and", r, "the ratio is", (success_2[q]))
   
-#Question 8
+#Question 8:
 
 df_subset_q2_success_TFP = {}
 success_2_TFP = {}
