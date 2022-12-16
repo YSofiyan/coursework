@@ -8,7 +8,7 @@ import numpy as np
 
 
 fp = r"/Users/yurisofiyan/Desktop/Economics /ThirdYear/NumericalMethods/pwt100.csv"
-df = pd.read_csv(fp,encoding='UTF-8')
+df = pd.read_csv(fp,encoding='latin-1')
 
 ###2
 
