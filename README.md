@@ -90,8 +90,8 @@ GDP_per_worker_ratio_5th_95th_percentile = float(income_per_worker[0.95]) / floa
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
 
 #Tabulate results 
-from tabulate import tabulate
 
+from tabulate import tabulate
 
 table1_data = [["Country", "Income per Worker", "Income per Hour Worked", "Income per Unit of Human Capital","Income per Hour of Human Capital"],
 ["United States", float(richest_income_per_worker), float(richest_income_per_hour_worked), float(richest_income_per_unit_of_human_capital), float(richest_income_per_hour_of_human_capital)],
