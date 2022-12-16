@@ -164,8 +164,8 @@ for (q, r) in zip (q_list, r_list):
     df_subset_ykh_success[q,r] = (df_subset_q2_success[q]/df_subset_q2_success[r])
     success_2[q] = (df_subset_ykh_success[q,r]/ df_subset_y_success[q,r])
     print("for percentiles", q, "and", r, "success 2 is", (success_2[q]))
-print(("percentile", q, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((q), interpolation='nearest')['y']]))
-print(("percentile", r, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((r), interpolation='nearest')['y']]))  
+    print(("percentile", q, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((r), interpolation='nearest')['y']]))  
   
 #Question 8:
 
@@ -182,8 +182,8 @@ for (q, r) in zip (q_list, r_list):
     df_subset_TFP_success[q,r] = (df_subset_q2_success_TFP[q]/df_subset_q2_success_TFP[r])
     success_2_TFP[q] = (df_subset_TFP_success[q,r]/ df_subset_y_success[q,r])
     print("for percentiles", q, "and", r, "success 2", (success_2_TFP[q]))
-print(("percentile", q, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((q), interpolation='nearest')['y']]))
-print(("percentile", r, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((r), interpolation='nearest')['y']]))
+    print(("percentile", q, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_subset_2019.loc[df_subset_2019['y'] == df_subset_2019.quantile((r), interpolation='nearest')['y']]))
 
 var_log_y_kh = statistics.variance(np.log((df_subset_2019["cgdpo"] / df_subset_2019["emp"]) / df_subset_2019["ctfp"]))
 var_log_TFP = statistics.variance(np.log((df_subset_2019["ctfp"])))
@@ -224,5 +224,5 @@ for (q, r) in zip (q_list, r_list):
     df_subset_ykh_success_OECD[q,r] = (df_subset_q2_success_OECD[q]/df_subset_q2_success_OECD[r])
     success_2_OECD[q] = (df_subset_ykh_success_OECD[q,r]/ df_subbset_y_success_OECD[q,r])
     print("for percentiles", q, "and", r, "success 2 is", (success_2_OECD[q]))
-print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
-print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
+    print(("percentile", q, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((q), interpolation='nearest')['y']]))
+    print(("percentile", r, df_OECD.loc[df_OECD['y'] == df_OECD.quantile((r), interpolation='nearest')['y']]))  
