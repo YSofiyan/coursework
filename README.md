@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-fp = r"/Users/yurisofiyan/Desktop/Economics /ThirdYear/NumericalMethods/pwt100.csv"
+fp = "https://raw.githubusercontent.com/jivizcaino/PWT_10.0/main/pwt100.csv"
 df = pd.read_csv(fp,encoding='latin-1')
 
 ###2
