@@ -569,3 +569,8 @@ for (q, r) in zip (q_list, r_list):
     print("for percentiles", q, "and", r, "success 2 is", (success_2_African[q]))
     print(("percentile", q, df_African.loc[df_African['y'] == df_African.quantile((q), interpolation='nearest')['y']]))
     print(("percentile", r, df_African.loc[df_African['y'] == df_African.quantile((r), interpolation='nearest')['y']]))  
+    
+#Summary table:
+
+summarytable_data = [['Subsample', "Number of Observations:", "Var[log(y)]:", "Var[log(ykh)]:", "Success 1:"], ["Above Median", len(df_above_median), statistics.variance(np.log(df_above_median['y'])), statistics.variance(np.log(df_above_median['ykh'])), success1_above_median],["Below Median", len(df_below_median), statistics.variance(np.log(df_below_median['y'])), statistics.variance(np.log(df_below_median['ykh'])), success1_below_median],["OECD Countries", len(df_OECD), statistics.variance(np.log(df_OECD['y'])), statistics.variance(np.log(df_OECD['ykh'])), success1_OECD],["Non-OECD Countries", len(df_non_OECD), statistics.variance(np.log(df_non_OECD['y'])), statistics.variance(np.log(df_non_OECD['ykh'])), success1_non_OECD],["African Countries", len(df_African), "N/A", "N/A", "N/A"],["Countries in the Americas", len(df_Americas), statistics.variance(np.log(df_Americas['y'])), statistics.variance(np.log(df_Americas['ykh'])), success1_Americas],["Asian and Oceanic Countries", len(df_Asian_Oceanic), statistics.variance(np.log(df_Asian_Oceanic['y'])), statistics.variance(np.log(df_Asian_Oceanic['ykh'])), success1_Asian_Oceanic],["European Countries", len(df_European), statistics.variance(np.log(df_European['y'])), statistics.variance(np.log(df_European['ykh'])), success1_European]]
+print(tabulate(summarytable_data, headers='firstrow', tablefmt='fancy_grid'))
