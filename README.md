@@ -85,7 +85,7 @@ print ("The GDP per worker ratio between the countries in the 90th and 10th perc
 GDP_per_worker_ratio_5th_95th_percentile = income_per_worker[0.95] / income_per_worker[0.05]
 print ("The GDP per worker ratio between the countries in the 95th and 5th percentiles is", GDP_per_worker_ratio_5th_95th_percentile, ":1")
 
-#Question 5:
+###5
 
 import matplotlib.pyplot as plt
 import statistics
@@ -110,7 +110,7 @@ for x_variables, y_variables in itertools.product(x_variables, y_variables):
 plt.show()
 plt.close()
 
-#Question 6
+###6
 
 import statistics
 
